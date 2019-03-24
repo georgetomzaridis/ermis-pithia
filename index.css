@@ -1,0 +1,42 @@
+html body{
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+    font-family: 'Open Sans', sans-serif;
+    background-color: #e9ecef;
+}
+#navbar-main{
+    background-color: #10316b!important;
+}
+
+#navbar-main a{
+    color: white;
+    fill: white;
+}
+
+.search-form{
+    text-align: center;
+    width: 35%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.alert{
+    text-align: center;
+    width: 50%;
+    margin-right: auto;
+    margin-left: auto;
+    font-size: 13px;
+}
+.alert i {
+    font-size: 13px;
+}
+.search-results{
+    max-width: 60%;
+    width: auto;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+.card{
+    margin-bottom: 15px;
+}
