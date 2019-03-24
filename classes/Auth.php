@@ -90,42 +90,46 @@ class Auth
                 if ($result->num_rows > 0) {
                     // output data of each row
                     while ($row = $result->fetch_assoc()) {
-                        if ($row['UserApps'] == "all") {
-                            //Acces on all apps
-                            return "PERM_OK";
-                            exit();
-                        } elseif ($row['UserApps'] != "" || $row['UserApps'] != null) {
+                        $userperms = $row['UserApps'];
+                    }
+                    if ($userperms == "all") {
+                        //Acces on all apps
+                        return "PERM_OK";
+                        echo "Here";
+                    } elseif ($userperms != "all") {
 
-                            $userperms = $row['UserApps'];
+                        $sql2 = "SELECT * FROM apps WHERE AppURL='$url_secure'";
+                        $result2 = $conn->query($sql2);
+                        if ($result2->num_rows > 0) {
+                            // output data of each row
 
-                            $sql2 = "SELECT * FROM apps WHERE AppURL='$url_secure'";
-                            $result2 = $conn->query($sql2);
-                            if ($result2->num_rows > 0) {
-                                // output data of each row
-
-                                while ($row2 = $result2->fetch_assoc()) {
-                                    if (strpos($userperms, $row2['ID']) !== false) {
-                                        //User have the permission to access this app
-                                        return "PERM_OK";
-                                        exit();
-                                    } else {
-                                        //User dont have the permission to access this app
-                                        return "PERM_NOT";
-                                        exit();
-                                    }
+                            while ($row2 = $result2->fetch_assoc()) {
+                                if (strpos($userperms, $row2['ID']) !== false) {
+                                    //User have the permission to access this app
+                                    return "PERM_OK";
+                                    exit();
+                                } else {
+                                    //User dont have the permission to access this app
+                                    return "PERM_NOT";
+                                    exit();
                                 }
-                            } else {
-                                return "ERROR_URL";
                             }
+                        } else {
+                            return "ERROR_URL";
                         }
+                    }else{
+                        return "PERM_NOT";
+
+
                     }
                 } else {
                     return "PERM_NOT";
+
                 }
 
             } else {
                 return "ERROR_URL";
-                exit();
+
             }
         }else{
             return "PERM_NOT_INCLUDE";
