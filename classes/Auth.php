@@ -10,10 +10,10 @@ class Auth
 {
     function __construct()
     {
-        $this->servername = "172.168.1.121";
-        $this->username = "pithia";
-        $this->password = 'hLFQnx5vmm6Syq7F';
-        $this->dbname = "pithia";
+        $this->servername = "HOST";
+        $this->username = "USERNAME";
+        $this->password = "PASSWORD";
+        $this->dbname = "DBNAME";
     }
 
     function Login($username, $password, $url = null){
