@@ -20,7 +20,7 @@ class Auth
         $conn = new mysqli($this->servername, $this->username, $this->password, $this->dbname);
         // Check connection
         if ($conn->connect_error) {
-            header("Location: http://apps.3gel.network/accesserror.html");
+            header("Location: URL_ACCESS_ERROR");
             exit();
         }
         mysqli_set_charset($conn,"utf8");
@@ -39,7 +39,7 @@ class Auth
                    //Access Granted;
                    if ($row['UserStatus'] == 1) {
                        if ($url_secure != "" || $url_secure != null) {
-                           if (strpos($url_secure, 'apps.3gel.network') !== false) {
+                           if (strpos($url_secure, 'PORTAL_URL') !== false) {
                                //Have a valid networked url
                                $_SESSION['uid'] = $row['UserEmail'];
                                return "OK";
@@ -75,14 +75,14 @@ class Auth
         $conn = new mysqli($this->servername, $this->username, $this->password, $this->dbname);
         // Check connection
         if ($conn->connect_error) {
-            header("Location: http://apps.3gel.network/accesserror.html");
+            header("Location: URL_ACCESS_ERROR");
             exit();
         }
         mysqli_set_charset($conn,"utf8");
         $email_secure = mysqli_escape_string($conn, htmlspecialchars($email));
         $url_secure = mysqli_escape_string($conn, htmlspecialchars($appurl));
         if($url_secure != "" || $url_secure != null) {
-            if (strpos($url_secure, 'apps.3gel.network') !== false) {
+            if (strpos($url_secure, 'PORTAL_URL') !== false) {
                 //Allowed network url
                 $sql = "SELECT * FROM perms WHERE UserEmail='$email_secure'";
                 $result = $conn->query($sql);
@@ -141,7 +141,7 @@ class Auth
         $conn = new mysqli($this->servername, $this->username, $this->password, $this->dbname);
         // Check connection
         if ($conn->connect_error) {
-            header("Location: http://apps.3gel.network/accesserror.html");
+            header("Location: URL_ACCESS_ERROR");
             exit();
         }
         mysqli_set_charset($conn, "utf8");
