@@ -2,13 +2,13 @@
 session_start();
 include 'classes/autoload.php';
 if(isset($_GET['appurl']) && !empty($_GET['appurl'])){
-    if (strpos($_GET['appurl'], 'apps.3gel.network') !== false) {
+    if (strpos($_GET['appurl'], 'PORTAL_URL') !== false) {
         $apptitle = $_GET['appurl'];
     }
 }
 $appstatus = $Auth->checkStatus(5);
 if($appstatus == "NOT_OK"){
-    header("Location: http://apps.3gel.network");
+    header("Location: PORTAL_URL");
     exit();
 }
 
@@ -81,12 +81,12 @@ if($appstatus == "NOT_OK"){
                                                         break;
                                                 }
                                             }else{
-                                                header("Location: http://apps.3gel.network");
+                                                header("Location: PORTAL_URL");
                                                 exit();
                                             }
 
                                         }else{
-                                            header("Location: http://apps.3gel.network");
+                                            header("Location: PORTAL_URL");
                                             exit();
                                         }
                                         break;
